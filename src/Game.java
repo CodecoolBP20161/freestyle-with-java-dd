@@ -35,6 +35,7 @@ public class Game extends JPanel {
     }
 
     private void move() {
+
         sprite.move();
     }
 
@@ -42,13 +43,20 @@ public class Game extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-        sprite.paint(g2d);
+//        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+//                RenderingHints.VALUE_ANTIALIAS_ON);
+//        g.fillRect(sprite.getX(), sprite.getY(), 60, 60);
+        doDrawing(g);
+
+    }
+
+    public void doDrawing(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), this);
     }
 
     public static void main(String[] args) throws InterruptedException {
-        JFrame frame = new JFrame("Mini Tennis");
+        JFrame frame = new JFrame("Boring Game");
         Game game = new Game();
         frame.add(game);
         frame.setSize(300, 400);

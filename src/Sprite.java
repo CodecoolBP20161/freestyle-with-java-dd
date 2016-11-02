@@ -1,8 +1,11 @@
 /**
  * Created by svindler on 02.11.2016.
  */
-import java.awt.Graphics2D;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.Image;
 
 
 public class Sprite {
@@ -14,7 +17,12 @@ public class Sprite {
 
     private Game game;
 
+    private Image image;
+
     public Sprite(Game game) {
+        ImageIcon icon = new ImageIcon("src/sprite.png");
+        image = icon.getImage();
+
 
         this.game = game;
     }
@@ -32,10 +40,8 @@ public class Sprite {
         }
     }
 
-    public void paint(Graphics2D g) {
-
-        g.fillRect(x, y, 60, 60);
-
+    public Image getImage() {
+        return image;
     }
 
     public void keyReleased(KeyEvent e) {
@@ -45,8 +51,17 @@ public class Sprite {
 
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+
             xa = -1;
         }
 
