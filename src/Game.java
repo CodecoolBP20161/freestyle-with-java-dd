@@ -1,8 +1,10 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Objects;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -10,9 +12,12 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Game extends JPanel {
 
-    Sprite sprite = new Sprite(this);
+    Sprite sprite = new Sprite();
+    Enemy enemy = new Enemy();
+
 
     private Game() {
+
 
         addKeyListener(new KeyListener() {
 
@@ -22,11 +27,13 @@ public class Game extends JPanel {
 
             @Override
             public void keyReleased(KeyEvent e) {
+
                 sprite.keyReleased(e);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
+
                 sprite.keyPressed(e);
             }
         });
@@ -34,19 +41,57 @@ public class Game extends JPanel {
         setFocusable(true);
     }
 
-    private void move() {
+    private void createEnemy() {
+        int randomNum = (int)(Math.random() * 1000 + 1);
+
+        if (randomNum > 990) {
+            Enemy enemy = new Enemy();
+        }else{
+//            System.out.println("most nincs enemy.");
+        }
+    }
+
+    private void spriteMove() {
 
         sprite.move();
+
+    }
+
+    public void enemyMove() {
+        Iterator<Enemy> itr = Enemy.enemies.iterator();
+//        System.out.println(Enemy.enemies);
+
+        while (itr.hasNext()) {
+
+            Enemy enemy = itr.next();
+
+            if(!enemy.move()){
+
+                itr.remove();
+
+            }
+        }
+
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
-//        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-//                RenderingHints.VALUE_ANTIALIAS_ON);
-//        g.fillRect(sprite.getX(), sprite.getY(), 60, 60);
         doDrawing(g);
+//        Iterator<Enemy> itr = Enemy.enemies.iterator();
+////        System.out.println(Enemy.enemies);
+//
+//        while (itr.hasNext()) {
+//
+//            Enemy enemy = itr.next();
+//            enemy.paint(g2d);
+//            System.out.println(enemy.x);
+//
+//
+//
+//        }
+        Enemy.paint(g2d);
 
     }
 
@@ -57,14 +102,17 @@ public class Game extends JPanel {
 
     public static void main(String[] args) throws InterruptedException {
         JFrame frame = new JFrame("Boring Game");
+
         Game game = new Game();
         frame.add(game);
-        frame.setSize(300, 400);
+        frame.setSize(600, 700);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         while (true) {
-            game.move();
+            game.createEnemy();
+            game.spriteMove();
+            game.enemyMove();
             game.repaint();
             Thread.sleep(10);
         }

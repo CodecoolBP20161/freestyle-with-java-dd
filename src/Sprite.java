@@ -10,30 +10,28 @@ import java.awt.Image;
 
 public class Sprite {
 
-    int x = 0;
-    int y = 0;
+    int x = 240;
+    int y = 500;
     int xa = 0;
     int ya = 0;
 
-    private Game game;
 
     private Image image;
 
-    public Sprite(Game game) {
+    public Sprite() {
         ImageIcon icon = new ImageIcon("src/sprite.png");
         image = icon.getImage();
 
 
-        this.game = game;
     }
 
     public void move() {
-        if (x + xa > 0 && x + xa < game.getWidth()-60) {
+        if (x + xa > 0 && x + xa < 600-60) {
 
             x = x + xa;
         }
 
-        if (y + ya > 0 && y + ya < game.getWidth()-60) {
+        if (y + ya > 0 && y + ya < 700-60) {
 
             y = y + ya;
 
@@ -68,14 +66,7 @@ public class Sprite {
         else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             xa = 1;
         }
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            ya = 1;
 
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            ya = -1;
-
-        }
     }
 
 }
