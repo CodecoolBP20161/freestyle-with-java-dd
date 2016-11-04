@@ -10,7 +10,7 @@ import java.awt.Image;
 
 public class Sprite {
 
-    private static final int WIDTH = 128;
+    private static final int WIDTH = 100;
     private static final int HEIGHT = 128;
 
     private int x = 240;

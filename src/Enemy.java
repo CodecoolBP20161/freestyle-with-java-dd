@@ -25,7 +25,7 @@ public class Enemy extends JPanel{
 
     }
 
-    public boolean move(Rectangle rectangle) {
+    public boolean move(Rectangle rectangle, Rectangle enemyRec) {
 
         Iterator<Enemy> itr = Enemy.enemies.iterator();
 
@@ -33,7 +33,7 @@ public class Enemy extends JPanel{
 
             return false;
         }
-        if (collision(rectangle)) {
+        if (collision(rectangle, enemyRec)) {
             JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
             System.exit(ABORT);
         }
@@ -57,8 +57,8 @@ public class Enemy extends JPanel{
         }
     }
 
-    private boolean collision(Rectangle sprite) {
-        return sprite.intersects(getEnemyBounds());
+    private boolean collision(Rectangle sprite, Rectangle enemyRec) {
+        return sprite.intersects(enemyRec);
     }
 
 

@@ -61,9 +61,12 @@ public class Game extends JPanel {
 
         while (itr.hasNext()) {
 
-            Enemy enemy = itr.next();
 
-            if(!enemy.move(rec)){
+            Enemy enemy = itr.next();
+            Rectangle enemyRec = enemy.getEnemyBounds();
+
+
+            if(!enemy.move(rec, enemyRec)){
 
                 itr.remove();
 
