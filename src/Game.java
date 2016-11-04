@@ -1,4 +1,4 @@
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 public class Game extends JPanel {
 
     Sprite sprite = new Sprite();
-    Enemy enemy = new Enemy();
 
 
     private Game() {
@@ -44,7 +43,7 @@ public class Game extends JPanel {
     private void createEnemy() {
         int randomNum = (int)(Math.random() * 1000 + 1);
 
-        if (randomNum > 990) {
+        if (randomNum > 995) {
             Enemy enemy = new Enemy();
         }else{
 //            System.out.println("most nincs enemy.");
@@ -60,12 +59,13 @@ public class Game extends JPanel {
     public void enemyMove() {
         Iterator<Enemy> itr = Enemy.enemies.iterator();
 //        System.out.println(Enemy.enemies);
+        Rectangle rec = sprite.getSpriteBounds();
 
         while (itr.hasNext()) {
 
             Enemy enemy = itr.next();
 
-            if(!enemy.move()){
+            if(!enemy.move(rec)){
 
                 itr.remove();
 
@@ -79,18 +79,6 @@ public class Game extends JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         doDrawing(g);
-//        Iterator<Enemy> itr = Enemy.enemies.iterator();
-////        System.out.println(Enemy.enemies);
-//
-//        while (itr.hasNext()) {
-//
-//            Enemy enemy = itr.next();
-//            enemy.paint(g2d);
-//            System.out.println(enemy.x);
-//
-//
-//
-//        }
         Enemy.paint(g2d);
 
     }

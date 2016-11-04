@@ -3,15 +3,18 @@
  */
 
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 
 public class Enemy extends JPanel{
 
-    private int x = (int)(Math.random() * 575 + 1);
+    private static final int DIAMETER = 30;
+
+
+    private int x = (int)(Math.random() * 580 + 1);
     public static ArrayList<Enemy> enemies = new ArrayList<>();
     private int y = 0;
 
@@ -22,7 +25,7 @@ public class Enemy extends JPanel{
 
     }
 
-    public boolean move() {
+    public boolean move(Rectangle rectangle) {
 
         Iterator<Enemy> itr = Enemy.enemies.iterator();
 
@@ -31,8 +34,14 @@ public class Enemy extends JPanel{
 
             return false;
         }
+        if (collision(rectangle)) {
+            System.out.println("collosion");
+            System.exit(ABORT);
+        }
+
 
         y +=1;
+
         return true;
     }
 
@@ -45,13 +54,17 @@ public class Enemy extends JPanel{
 
             Enemy enemy = itr.next();
 
-            g.fillOval(enemy.x, enemy.y, 30, 30);
-
-
-
+            g.fillOval(enemy.x, enemy.y, DIAMETER, DIAMETER);
 
         }
     }
 
+    private boolean collision(Rectangle sprite) {
+        return sprite.intersects(getEnemyBounds());
+    }
 
+
+    public Rectangle getEnemyBounds() {
+        return new Rectangle(x, y, DIAMETER, DIAMETER);
+    }
 }
