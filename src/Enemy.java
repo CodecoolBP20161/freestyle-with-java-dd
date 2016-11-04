@@ -30,12 +30,11 @@ public class Enemy extends JPanel{
         Iterator<Enemy> itr = Enemy.enemies.iterator();
 
         if (this.y  == 700) {
-//            enemies.remove(this);
 
             return false;
         }
         if (collision(rectangle)) {
-            System.out.println("collosion");
+            JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
             System.exit(ABORT);
         }
 
@@ -48,12 +47,11 @@ public class Enemy extends JPanel{
 
     public static void paint(Graphics2D g) {
         Iterator<Enemy> itr = Enemy.enemies.iterator();
-        //        System.out.println(Enemy.enemies);
 
         while (itr.hasNext()) {
 
             Enemy enemy = itr.next();
-
+            g.setColor(Color.yellow);
             g.fillOval(enemy.x, enemy.y, DIAMETER, DIAMETER);
 
         }

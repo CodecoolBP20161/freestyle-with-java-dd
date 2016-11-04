@@ -46,7 +46,6 @@ public class Game extends JPanel {
         if (randomNum > 995) {
             Enemy enemy = new Enemy();
         }else{
-//            System.out.println("most nincs enemy.");
         }
     }
 
@@ -58,7 +57,6 @@ public class Game extends JPanel {
 
     public void enemyMove() {
         Iterator<Enemy> itr = Enemy.enemies.iterator();
-//        System.out.println(Enemy.enemies);
         Rectangle rec = sprite.getSpriteBounds();
 
         while (itr.hasNext()) {
@@ -93,6 +91,7 @@ public class Game extends JPanel {
 
         Game game = new Game();
         frame.add(game);
+        game.setBackground(Color.black);
         frame.setSize(600, 700);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

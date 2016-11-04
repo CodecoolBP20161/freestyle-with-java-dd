@@ -10,7 +10,6 @@ import java.awt.Image;
 
 public class Sprite {
 
-    private static final int Y = 500;
     private static final int WIDTH = 128;
     private static final int HEIGHT = 128;
 
@@ -30,7 +29,6 @@ public class Sprite {
     }
 
     public void move() {
-        System.out.println(x);
         if (x + xa > 0 && x + xa < 600-60) {
 
             x = x + xa;
@@ -59,7 +57,7 @@ public class Sprite {
     }
 
     public int getY() {
-        return Y;
+        return y;
     }
 
     public void keyPressed(KeyEvent e) {
@@ -75,12 +73,7 @@ public class Sprite {
     }
 
     public Rectangle getSpriteBounds() {
-        return new Rectangle(x, Y, WIDTH, HEIGHT);
+        return new Rectangle(x, y, WIDTH, HEIGHT);
     }
-
-    public int getTopY() {
-        return Y;
-    }
-
 
 }
